@@ -1,0 +1,36 @@
+
+<h2 class="title">Criar Novo Post</h2>
+<div class="form-container">
+  <form class="form" (submit)="createPost()">
+    <div class="form-post">
+      <label for="title">Título</label>
+      <input [(ngModel)]="postTitle" name="title" type="text" placeholder="Título do post" required>
+    </div>
+    <div class="form-post">
+      <label for="url">Imagem URL</label>
+      <input [(ngModel)]="postUrl" name="url" type="text" placeholder="URL da imagem" required>
+    </div>
+    <div class="form-post">
+      <label for="body">Descrição</label>
+      <textarea [(ngModel)]="postBody" name="body" placeholder="Conteúdo do post" required></textarea>
+    </div>
+    <button type="submit">Criar Post</button>
+  </form>
+
+  <div class="preview-container">
+    <div class="preview-title">Prévia do Post</div>
+    <div class="preview">
+      <img [src]="postUrl ? postUrl : 'https://placehold.co/600x400'" alt="Prévia da imagem" />
+      <div class="preview-text">
+        <h3>{{ postTitle.length ? postTitle : 'Digite um título' }}</h3>
+        <p>
+          {{ postBody.length ? (postBody.length > 100 ? (postBody | slice: 0:100) + '...' : postBody) : 'Escreva algo para visualizar aqui...' }}
+        </p>
+        <a>Ler mais</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
