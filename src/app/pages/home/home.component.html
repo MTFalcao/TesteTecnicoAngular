@@ -1,0 +1,44 @@
+
+<div class="container">
+  <div class="header-text" id="home">
+    <h1>Exibindo resultado de busca por "{{searchBar}}"</h1>
+    <p>Encontramos um total de {{ filteredPosts.length }} resultados para a sua busca</p>
+  </div>
+
+  <div class="content">
+    <div class="posts-content">
+      <div class="post" *ngFor="let post of filteredPosts">
+        <img [src]="post.image" alt="{{ post.title }} - {{post.createdAt | date:'short'}}">
+        <div class="post-text">
+          <h2>{{ post.title }}</h2>
+          <p>{{post.body.length > 100 ? (post.body | slice:0:100) + ' ...' : post.body}}</p>
+          <a [routerLink]="['/post-detail', post.id]" class="ler-mais">Ler mais</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-bar">
+      <div class="category">
+        <h1>Categorias</h1>
+        <p><a href="">Lorem ipsum dolor</a></p>
+        <hr />
+        <p><a href="">Lorem ipsum dolor</a></p>
+        <hr />
+        <p><a href="">Lorem ipsum dolor</a></p>
+        <hr />
+        <p><a href="">Lorem ipsum dolor</a></p>
+        <hr />
+      </div>
+
+      <form action="" class="search-container">
+        <p>Procurando alguma notícia?</p>
+        <div class="search-bar">
+          <input type="text" class="search-input" name ="search" placeholder="Pesquisar por..."[(ngModel)]="searchBar" (input)="filterPosts()" />
+          <button class="search-icon">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
